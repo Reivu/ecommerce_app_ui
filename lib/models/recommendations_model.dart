@@ -12,7 +12,7 @@ class Recommendations {
   });
 }
 
-List<Recommendations> recomendations = [
+List<Recommendations> recommendations = [
   Recommendations(
     name: 'BODYCON DRESS',
     imageUrl: 'assets/images/1.jpg',

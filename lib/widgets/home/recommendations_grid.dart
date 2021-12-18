@@ -39,7 +39,7 @@ class _RecommendationsGridState extends State<RecommendationsGrid> {
           ),
           Expanded(
             child: GridView.builder(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 50.0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 20.0,
@@ -47,40 +47,48 @@ class _RecommendationsGridState extends State<RecommendationsGrid> {
                 childAspectRatio: (customWidth / customHeight),
               ),
               physics: const BouncingScrollPhysics(),
-              itemCount: recomendations.length,
+              itemCount: recommendations.length,
               itemBuilder: (BuildContext context, int index) {
-                Recommendations recommendation = recomendations[index];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.asset(
-                        recommendation.imageUrl,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: size.height / 3.5,
+                Recommendations recommendation = recommendations[index];
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      '/item',
+                      arguments: recommendation,
+                    );
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Image.asset(
+                          recommendation.imageUrl,
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: size.height / 3.5,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('\$${recommendation.price}'),
-                        const Icon(Icons.favorite_border_rounded),
-                      ],
-                    ),
-                    const SizedBox(height: 5.0),
-                    Text(
-                      recommendation.name,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 5.0),
-                    Text(
-                      '${recommendation.color} color',
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                  ],
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('\$${recommendation.price}'),
+                          const Icon(Icons.favorite_border_rounded),
+                        ],
+                      ),
+                      const SizedBox(height: 5.0),
+                      Text(
+                        recommendation.name,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 5.0),
+                      Text(
+                        '${recommendation.color} color',
+                        style: const TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
                 );
               },
             ),

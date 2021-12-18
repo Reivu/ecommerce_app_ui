@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 class BottomNav extends StatefulWidget {
@@ -7,59 +9,70 @@ class BottomNav extends StatefulWidget {
   State<BottomNav> createState() => _BottomNavState();
 }
 
+//Title is deprecated so still in progress (label can't contains Widget)
+//Or just use some third-party thing
+//Or custom tabbar
+//Or bottom appbar
 class _BottomNavState extends State<BottomNav> {
+  var _tabItem = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _tabItem = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var _tabItem = 0;
-    void _onItemTapped(int index) {
-      setState(() {
-        _tabItem = index;
-      });
-    }
-
-    //Title is deprecated so still in progress (label can't contains Widget)
-    //Or just use some third-party thing
-    //Or custom tabbar
     return ClipRRect(
       borderRadius: const BorderRadius.only(
-        topRight: Radius.circular(40),
-        topLeft: Radius.circular(40),
+        topLeft: Radius.circular(30.0),
+        topRight: Radius.circular(30.0),
       ),
       child: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: const Text(
+            icon: Text(
               'Home',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: _tabItem == 0 ? Colors.blue : Colors.black,
+              ),
             ),
             title: showIndicator(_tabItem == 0),
           ),
           BottomNavigationBarItem(
-            icon: const Text(
-              'Favorite',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            icon: Text(
+              'Favourite',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: _tabItem == 1 ? Colors.blue : Colors.black,
+              ),
             ),
             title: showIndicator(_tabItem == 1),
           ),
           BottomNavigationBarItem(
-            icon: const Text(
+            icon: Text(
               'Shop',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: _tabItem == 2 ? Colors.blue : Colors.black,
+              ),
             ),
             title: showIndicator(_tabItem == 2),
           ),
           BottomNavigationBarItem(
-            icon: const Text(
+            icon: Text(
               'Me',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: _tabItem == 3 ? Colors.blue : Colors.black,
+              ),
             ),
             title: showIndicator(_tabItem == 3),
           ),
         ],
         showUnselectedLabels: true,
-        selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
-        currentIndex: _tabItem,
       ),
     );
   }
@@ -70,7 +83,7 @@ class _BottomNavState extends State<BottomNav> {
             padding: EdgeInsets.only(top: 4),
             child: Icon(
               Icons.brightness_1,
-              size: 10,
+              size: 7.0,
               color: Colors.blue,
             ),
           )

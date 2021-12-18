@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                     onPressed: () {},
                     icon: const Icon(
                       Icons.shopping_cart_outlined,
-                      size: 30.0,
+                      size: 25.0,
                     ),
                   ),
                 ],
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child:
-                  Text('Enjoy your free shipping, your first code is: first'),
+                  Text('Enjoy your free shipping, your first code is: First'),
             ),
             //Recommendations
             const Expanded(
