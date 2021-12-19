@@ -18,7 +18,7 @@ class _RecommendationsGridState extends State<RecommendationsGrid> {
     return Container(
       margin: const EdgeInsets.only(top: 30.0),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: Colors.grey[100],
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(40.0),
           topRight: Radius.circular(40.0),
