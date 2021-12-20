@@ -1,16 +1,4 @@
-# ecommerce_app_ui
+# E-commerce App UI
+Design: [N I R A](https://dribbble.com/shots/7500869-E-commerce-App-UI)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="https://user-images.githubusercontent.com/37971110/146665145-57f43932-aa5b-4ae3-afae-f25540ac413d.png" width="300">&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/37971110/146665158-db8a2d4b-b77b-477a-ae3b-76fc577161aa.png" width="300">&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/37971110/146665160-4a990712-4139-4868-b734-49a35f586d1b.png" width="300">
