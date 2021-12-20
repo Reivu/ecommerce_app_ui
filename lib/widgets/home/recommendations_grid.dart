@@ -9,6 +9,17 @@ class RecommendationsGrid extends StatefulWidget {
 }
 
 class _RecommendationsGridState extends State<RecommendationsGrid> {
+  final Set _favorite = {};
+  void _tab(int index, bool isSaved) {
+    setState(() {
+      if (isSaved) {
+        _favorite.remove(index);
+      } else {
+        _favorite.add(index);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -49,18 +60,19 @@ class _RecommendationsGridState extends State<RecommendationsGrid> {
               physics: const BouncingScrollPhysics(),
               itemCount: recommendations.length,
               itemBuilder: (BuildContext context, int index) {
+                var _isSaved = _favorite.contains(index);
                 Recommendations recommendation = recommendations[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
-                      '/item',
-                      arguments: recommendation,
-                    );
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(
+                          '/item',
+                          arguments: recommendation,
+                        );
+                      },
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(10.0),
                         child: Image.asset(
                           recommendation.imageUrl,
@@ -69,26 +81,34 @@ class _RecommendationsGridState extends State<RecommendationsGrid> {
                           height: size.height / 3.5,
                         ),
                       ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('\$${recommendation.price}'),
-                          const Icon(Icons.favorite_border_rounded),
-                        ],
-                      ),
-                      const SizedBox(height: 5.0),
-                      Text(
-                        recommendation.name,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 5.0),
-                      Text(
-                        '${recommendation.color} color',
-                        style: const TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('\$${recommendation.price}'),
+                        GestureDetector(
+                          onTap: () => _tab(index, _isSaved),
+                          child: Icon(
+                            _isSaved
+                                ? Icons.favorite
+                                : Icons.favorite_border_rounded,
+                            color: _isSaved ? Colors.red : Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5.0),
+                    Text(
+                      recommendation.name,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 5.0),
+                    Text(
+                      '${recommendation.color} color',
+                      style: const TextStyle(color: Colors.grey),
+                    ),
+                  ],
                 );
               },
             ),
